@@ -113,7 +113,7 @@
                                 settings.load.call(self, elements_left, settings);
                             }
                         })
-                        .error(function() {
+                        .one("error", function() {
                             if (settings.error_image) {
                                 $self
                                     .hide()
