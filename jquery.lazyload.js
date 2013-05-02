@@ -27,7 +27,8 @@
             data_attribute  : "original",
             skip_invisible  : true,
             appear          : null,
-            load            : null
+            load            : null,
+            error_image     : null
         };
 
         function update() {
@@ -110,6 +111,14 @@
                             if (settings.load) {
                                 var elements_left = elements.length;
                                 settings.load.call(self, elements_left, settings);
+                            }
+                        })
+                        .error(function() {
+                            if (settings.error_image) {
+                                $self
+                                    .hide()
+                                    .attr("src", settings.error_image)
+                                    [settings.effect](settings.effectspeed);
                             }
                         })
                         .attr("src", $self.data(settings.data_attribute));
